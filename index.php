@@ -215,15 +215,18 @@ switch ($f[0]) {
 }
 #WAJIB
 $globalVar = array(
-    "namaApp" => "Aplikasi PPDB 2017",
-    "namaKota" => "Kota Langit",
-    "namaKlien" => "Dinas Pendidikan",
+    "namaApp" => "Sippedia",
+    "namaKota" => "Sippedia",
+    "namaKlien" => "",
     "copyright" => "2017"
 );
 
 $menuAdmin = array(
-    array('target' => 'berandaAdmin', 'label' => 'Depan', 'icon' => 'fa-desktop'),
-    array('target' => 'tabelPage', 'label' => 'Tabel', 'icon' => 'fa-table'),
+    array('label' => 'Playgroup/TK', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#5ABA02'),
+    array('label' => 'SD Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#ED3A3D'),
+    array('label' => 'SMP Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#1F92CA'),
+    array('label' => 'SMA Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#536DFD'),
+    array('label' => 'Ditandai', 'target' => '', 'icon' => 'fa-tag','warna'=>'#FC6800'),
 );
 $theUser = array(
     "namaUser" => "Ciprut",

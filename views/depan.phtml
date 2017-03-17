@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
     <title>{{ globalVar.namaApp }}</title>
-    <link rel="shortcut icon" href="https://stock.schoolmedia.id/general/logo/faveicon.ico"/>
+    <link rel="shortcut icon" href="../asset/images/icon.ico"/>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
@@ -41,13 +41,36 @@
     <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
     <script src="../components/respond/dest/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        #navbar {
+            background-color: #f1f1f1;
+        }
+
+        #nav-search {
+            left: 20%;
+            padding-top: 7px;
+        }
+
+        .nav-search .nav-search-input {
+            border-radius: 0px !important;
+        }
+
+        #nav-search-input {
+            color: #039BE5;
+            border-color: #039BE5;
+        }
+        .nav-list > li {
+            border-style: none;
+        }
+    </style>
+
 </head>
 
 <body class="{{ pageConfig.skin }}">
 <!-- #section:basics/navbar.layout -->
 {% if(pageConfig.headerNav) %}
     <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-container ace-save-state" id="navbar-container">
+        <div class="navbar-container ace-save-state " id="navbar-container">
             <!-- #section:basics/sidebar.mobile.toggle -->
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
                 <span class="sr-only">Toggle sidebar</span>
@@ -63,17 +86,21 @@
             <div class="navbar-header pull-left">
                 <!-- #section:basics/navbar.layout.brand -->
                 <a href="/" class="navbar-brand">
-                    {#<img src="https://stock.schoolmedia.id/general/logo/tutwuri.jpg" width="50px"/>#}
-                    <small>
-                        {{  globalVar.namaApp }}
-                    </small>
+                    <img src="../asset/images/logo.png" height="25px"/>
                 </a>
-
                 <!-- /section:basics/navbar.layout.brand -->
 
                 <!-- #section:basics/navbar.toggle -->
 
                 <!-- /section:basics/navbar.toggle -->
+            </div>
+            <div id="nav-search" class="navbar-header pull-left">
+                <form class="form-search">
+      <span class="input-icon input-icon-right">
+        <input width="150%" type="text" class="nav-search-input input-sm" id="nav-search-input" autocomplete="off" />
+        <i class="ace-icon fa fa-search nav-search-icon" style="color: #039BE5"></i>
+      </span>
+                </form>
             </div>
 
             <!-- #section:basics/navbar.dropdown -->
@@ -85,7 +112,7 @@
     </div>
 {% endif %}
 <!-- /section:basics/navbar.layout -->
-<div class="main-container ace-save-state" id="main-container">
+<div class="main-container ace-save-state " id="main-container">
     <script type="text/javascript">
         try {
             ace.settings.loadState('main-container')
