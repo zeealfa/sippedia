@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="icon-file "></i>
+                    <span class="caption-subject bold uppercase">{{thePage.pageContent.data.judul}}</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="min-height: 200px">
+                <div class="col-xs-12 forLatex">
+                    <div id="test1" class="col-xs-12 "></div>
+                </div>
+                <div class="col-xs-6 forLatex"><textarea id="texting" class="hide col-xs-12"></textarea></div>
+                <div class="col-xs-6 forLatex"><img id="equation1"/></div>
+                <div class="col-xs-12">
+<textarea class="form-control {{pars.className}} {{addCLass}} encrypt" id="{{pars.nmField}}" name="{{pars.nmField}}" placeholder="{{pars.placeholder}}"
+          rows="{{jumRows}}" data-init="{{pars.defValue}}">{{thePage.pageContent.data.soal.a}}</textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="//latex.codecogs.com/css/equation-embed.css"/>
+<script type="text/javascript" src="//latex.codecogs.com/eqneditor/js/eq_config.js"></script>
+<script type="text/javascript" src="//latex.codecogs.com/eqneditor/js/eq_editor-lite-19.js"></script>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        {%include 'summer.js' %}
+    })
+</script>

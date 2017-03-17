@@ -1,0 +1,32 @@
+{#
+displayType:tabel
+Komponen=array(
+    judulTabel(str)
+    className (str)
+    idName (str)
+    headerTable (array)
+    dataTabel (array)
+);
+#}
+
+
+{% set tabel=theTable.displayKomponen %}
+<div class="table-header" >{{ tabel.judulTabel }}</div>
+<table class="table table-striped {{ tabel.className }}" id="{{ tabel.idName }}">
+    <thead>
+    <tr>
+        {% for header in tabel.headerTabel %}
+            <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in tabel.dataTabel %}
+        <tr>
+            {% for cell in data %}
+                <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

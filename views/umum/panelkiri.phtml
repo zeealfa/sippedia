@@ -1,0 +1,87 @@
+<!--
+TODO:
+VARIABLES:
+@DataTab (JSONObj):
+	@Sambutan(JSONObj):
+		@NamaPenyambut(Text)
+		@JabatanPenyambut(Text)
+		@IsiSambutan(Text)
+		@FileFoto(Text)
+	@Syarat (JSONObj)
+	    @Tingkat(Text)
+	    @TeksSyarat(Text)
+
+-->
+
+{% set Sambutan=DataTab.Sambutan %}
+{% set Syarat=DataTab.Syarat %}
+<div class="col-xs-12 profile-picture">
+    <!-- #section:elements.tab -->
+    <div class="tabbable">
+        <ul class="nav nav-tabs padding-18 tab-size-bigger" id="myTab">
+            <li class="active">
+                <a data-toggle="tab" href="#sambutan" aria-expanded="true">
+                    <i class="green ace-icon fa fa-user bigger-120"></i>
+                    Sambutan
+                </a>
+            </li>
+            {% if(Syarat!=null) %}
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="blue ace-icon fa fa-list-alt bigger-120 width-auto"></i>
+                        Syarat &nbsp;
+                        <i class="ace-icon fa fa-caret-down bigger-120 width-auto"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-info">
+                        {% for tingkat in Syarat %}
+                            <li><a data-toggle="tab" href="#syarat{{ tingkat.Tingkat }}">{{ tingkat.Tingkat }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
+            <li >
+                <a data-toggle="tab" href="#jadwal" aria-expanded="false">
+                    <i class="text-warning ace-icon fa fa-calendar bigger-120"></i>
+                    Jadwal
+                </a>
+            </li>
+            <li >
+                <a data-toggle="tab" href="#links" aria-expanded="false">
+                    <i class="text-primary ace-icon fa fa-globe bigger-120"></i>
+                    Link
+                </a>
+            </li>
+
+        </ul>
+        <div class="tab-content">
+            <div id="sambutan" class="tab-pane fade active in">
+                <p class="text-center">
+                    <!-- ambil dari Sambutan.FileFoto-->
+                    <img src="https://stock.schoolmedia.id/general/logo/tutwuri.jpg" width="100px"/><br/>
+                    <strong>{{ Sambutan.NamaPenyambut }}</strong>
+                </p>
+                <div class="h4 text-center blue">Sambutan {{ Sambutan.JabatanPenyambut }}</div>
+                {% if(Sambutan.IsiSambutan=="") %}
+                    <p>{% include "lipsum.txt" %}</p>
+                    <p>{% include "lipsum.txt" %}</p>
+                    <p>{% include "lipsum.txt" %}</p>
+                {% else %}
+                    <p>{{ Sambutan.IsiSambutan|raw }}</p>
+                {% endif %}
+            </div>
+            {% for tingkat in Syarat %}
+                <div id="syarat{{ tingkat.Tingkat }}" class="tab-pane fade in">
+                    <div class="h4">{{ tingkat.TeksSyarat|raw }}</div>
+                </div>
+            {%  endfor %}
+            <div id="jadwal" class="tab-pane fade in">
+                <div class="h4">Jadwal PPDB</div>
+            </div>
+            <div id="links" class="tab-pane fade in">
+                <div class="h4">Link Website Sekolah Peserta PPDB</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /section:elements.tab -->
+</div>

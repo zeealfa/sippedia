@@ -1,0 +1,162 @@
+{% extends "minim.phtml" %}
+{% block pageSidebar %}
+page-sidebar-closed
+{%endblock%}
+{% block pageSidebarMenu %}
+page-sidebar-menu-closed
+{%endblock%}
+
+{%set go=true%}
+{%if thePage.pageContent.theSoal|length <1 %}
+{%set go=false%}
+{%endif%}
+{% block content %}
+
+
+{%if go%}
+<div class="row">
+    <div class="portlet green-soft  box col-xs-8">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-info"></i>Petunjuk
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-xs-8">
+                    <ul class="unstyled">
+                        <li>Klik pada huruf jawaban yang paling benar</li>
+                        <li>Gunakan panah kanan dan kiri pada keyboard untuk berpindah soal</li>
+                        <li>Anda juga dapat menggunakan <strong>Peta Soal</strong> untuk berpindah antar soal</li>
+                        <li>Tombol <strong>Selesai</strong> dapat di klik ketika semua soal terjawab</li>
+                        <li>Ketika waktu mencapai 00:00:00, sesi akan berhenti secara otomatis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet red  box col-xs-4">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-hourglass"></i>Sisa Waktu
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 h2 text-right">
+                    <span id="spJam"></span>:<span id="spMenit"></span>:<span id="spDetik"></span>
+                </div>
+                <div class="col-xs-12 col-md-6 text-center h2 " id="divTimer">
+                    <button class="btn btn-md btn-danger  btnFinish"><i class="fa fa-flag-checkered"></i>Selesai</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    {% for quests in thePage.pageContent.theSoal %}
+    <div class="portlet blue-steel  box theSoals hide" id="soal_{{quests.noSoal}}" data-nomor="{{quests.noSoal}}">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-information"></i>{{quests.JUDUL_SOAL|upper}}
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+                <a href="" class="fullscreen"> </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="note note-info">{{quests.teksSoal|raw}}</div>
+                </div>
+            </div>
+            {%for answer in quests.answers %}
+            {%if(answer.noOpsi==1) %} {%set huruf ="A"%} {%endif%}
+            {%if(answer.noOpsi==2) %} {%set huruf ="B"%} {%endif%}
+            {%if(answer.noOpsi==3) %} {%set huruf ="C"%} {%endif%}
+            {%if(answer.noOpsi==4) %} {%set huruf ="D"%} {%endif%}
+            {%if(answer.noOpsi==5) %} {%set huruf ="E"%} {%endif%}
+            <div class="row">
+                <div class="col-xs-1 text-right">
+                    <p>
+                        <button class="btn btn-circle  tombolJawab grey" data-nomor="{{quests.noSoal}}" data-opsi="{{answer.noOpsi}}">{{huruf}}</button>
+                    </p>
+                </div>
+                <div class="col-xs-11">{{answer.textJawab|raw}}</div>
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+    {% endfor%}
+    <div class="col-xs-12 text-center h2 " id="divTimer">
+        <button class="btn btn-md btn-danger  btnFinish"><i class="fa fa-flag-checkered"></i>Selesai</button>
+    </div>
+</div>
+{%else%}
+{% if thePage.pageContent.place==false%}
+<h3 class="page-title">Anda dideteksi berpindah tempat atau berpindah browser. Hubungi pengawas untuk membuka penguncian.</h3>
+<button onclick="javascript:window.location.reload()"  class="btn btn-md btn-info"><i class="fa fa-refresh"></i> Muat Ulang</button>
+{%else%}
+<h3 class="page-title">Anda telah selesai mengerjakan soal pada ujian ini.</h3>
+<a href="/dataujian" target="_self" class="btn btn-md btn-info"><i class="fa fa-chevron-left"></i> Kembali</a>
+{%endif%}
+{%endif%}
+{%endblock%}
+{%block rightBar%}
+<a href="javascript:;" class="page-quick-sidebar-toggler">
+    <i class="icon-logout"></i>
+</a>
+<div class="page-quick-sidebar-wrapper">
+    <div class="page-quick-sidebar">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Peta Soal <span class="badge badge-danger" id="spanBlm">{{thePage.pageContent.theSoal|length}}</span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                    <table class="table ">
+                        <tbody>
+                        <tr>
+                            {% set nomor=1%}
+                            {% for quests in thePage.pageContent.theSoal %}
+                            <td class="text-center isPointing theMap " width="25%" data-nomor="{{quests.noSoal}} ">{{quests.noSoal}} <span class="badge theBadge badge-danger"
+                                                                                                                                           data-nomor="{{quests.noSoal}}">-</span>
+                            </td>
+                            {% if nomor is divisibleby (4) %}
+                        </tr>
+                        <tr> {%endif%}
+                            {% set nomor=nomor+1%}
+                            {%endfor%}
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th class="text-center">
+                                <button class="btn btn-md btn-danger  btnFinish" disabled><i class="fa fa-flag-checkered"></i>Selesai</button>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+{% block jscript %}
+{%if go%}
+{% include 'startUjian.js' with {params:thePage.pageContent.theSoal,target:thePage.pageContent.target}   %}
+{%endif%}
+{%endblock%}

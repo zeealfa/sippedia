@@ -1,0 +1,57 @@
+{% extends "utama.phtml" %}
+{% block content %}
+{{ parent() }}
+{% if thePage.pageContent.peserta %}
+{% set peserta=thePage.pageContent.peserta %}
+<h3 class="page-title">Pengerjaan Soal </h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet red-sunglo box">
+            <div class="portlet-title ">
+                <div class="caption"> {{thePage.pageContent.ujian.NAMA_UJIAN}}</div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th width="20%">Nama Peserta</th>
+                        <td>{{peserta.NAMA_SISWA}}</td>
+                        <td  width="20%">Kelas:  {{peserta.KELAS}}</td>
+                    </tr>
+                    <tr>
+                        <th >Mata Pelajaran</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.NM_MATA_PELAJARAN}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.TANGGAL_MULAI}} hingga {{thePage.pageContent.ujian.TANGGAL_AKHIR}}</td>
+                    </tr>
+                    <tr>
+                        <th>Durasi ujian</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.DURASI_UJIAN}} menit</td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah Soal</th>
+                        <td>{{thePage.pageContent.ujian.JUMLAH_SOAL}} </td>
+                    </tr>
+                    {% if thePage.pageContent.ujian.valid=="" %}
+                    <tr>
+                        <th>Kode Token</th>
+                        <td><input type="text" width="25px" id="txtToken" class="form-control" maxlength="5">
+                            <button id="btnStart" class="btn btn-sm btn-primary"> Mulai</button> </td>
+                    </tr>
+                    {%endif%}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<h3 class="page-title"> Kode Soal yang Anda pilih tidak sesuai </h3>
+<a class="btn btn-sm btn-danger" href="/dataujian" ><i class="fa fa-arrow-left"></i> Kembali</a>
+{% endif%}
+{%endblock%}
+{% block jscript %}
+{% if thePage.pageContent.ujian.valid=="" %}
+{% include 'doUjian.js' with {params:thePage.pageContent.ujian,target:thePage.pageContent.target}  %}
+{%endif%}
+{%endblock%}

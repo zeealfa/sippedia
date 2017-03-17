@@ -1,0 +1,118 @@
+{% extends "utama.phtml" %}
+{% block pageSidebar %}
+page-sidebar-closed
+{%endblock%}
+{% block pageSidebarMenu %}
+page-sidebar-menu-closed
+{%endblock%}
+
+{% block content %}
+{{ parent() }}
+
+<h3 class="page-title">Pengawasan Ujian</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet red-sunglo box">
+            <div class="portlet-title ">
+                <div class="caption"> {{thePage.pageContent.ujian.NAMA_UJIAN}}</div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th width="30%">Mata Pelajaran</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.NM_MATA_PELAJARAN}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.TANGGAL_MULAI}} hingga {{thePage.pageContent.ujian.TANGGAL_AKHIR}}</td>
+                    </tr>
+                    <tr>
+                        <th>Durasi ujian</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.DURASI_UJIAN}} menit</td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah Soal</th>
+                        <td>{{thePage.pageContent.ujian.JUMLAH_SOAL}} dari total <span id="spanTotal">{{thePage.pageContent.jumlahSoal}}</span> soal
+                            {{thePage.pageContent.ujian.NM_SCOPE_SOAL|lower}}
+                        </td>
+                        <td width="10%">
+                            <button class="btn btn-sm blue-sharp hide" id="btnSoal">Detail Soal</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah Peserta</th>
+                        <td><span id="spanPeserta">{{thePage.pageContent.jumlahPeserta}}</span> peserta didik</td>
+                        <td width="10%">
+                            <button class="btn btn-sm green-soft hide" id="btnPeserta">Detail Peserta</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Kode Token</th>
+                        <td><strong ><span id="theToken"> {{thePage.pageContent.ujian.KODE_TOKEN}}</span></strong> diberikan apabila ujian telah siap dimulai
+                            <div>
+                                <button class="btn btn-sm blue-sharp" id="btnToken">Ganti Token</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet green-soft box">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-users"></i>Peserta
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-hover" id="tableSiswa">
+                            <thead>
+                            <tr>
+                                <th width="10%" class="text-center">Pilih <br/><input type="checkbox" class="form-control" id="pilAll"></th>
+                                <th width="10%">NIS</th>
+                                <th width="10%">Kelas</th>
+                                <th>Nama Peserta Didik</th>
+                                <th width="10%">Mulai</th>
+                                <th width="10%">Selesai</th>
+                                <th width="10%">Tambah Waktu</th>
+                                <th width="10%">Kunci Lokasi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for member in thePage.pageContent.peserta%}
+                            <tr>
+                                <td class="text-center"><input type="checkbox" class="form-control pilSiswa input-md" data-a="{{member.kdPeserta}}"></td>
+                                <td>{{member.detail.NO_INDUK}}</td>
+                                <td>{{member.detail.KELAS}}</td>
+                                <td>{{member.detail.NAMA_SISWA}}</td>
+                                <td>{{member.mulai}}</td>
+                                <td>{{member.selesai}}</td>
+                                <td></td>
+                            </tr>
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block jsFiles %}
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=/mathJaxConfig.js"></script>
+{% endblock%}
+
+{% block jscript %}
+{% include 'aturUjian.js' with {params:thePage.pageContent.ujian} %}
+
+{%endblock%}

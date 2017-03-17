@@ -1,0 +1,43 @@
+{% set wid=theWidget.displayKomponen %}
+
+{#
+displayType:tabel
+Komponen=array(
+    judulWidget(str)
+    className (str)
+    idName (str)
+    isiWidget (array) =>harus bisa ke area
+);
+#}
+
+<div class="widget-box" id="{{ wid.idName }}">
+    <div class="widget-header">
+        <h5 class="widget-title">{{ wid.judulWidget }}</h5>
+        <!-- #section:custom/widget-box.toolbar -->
+        <div class="widget-toolbar hide">
+            <a href="#" data-action="fullscreen" class="orange2">
+                <i class="ace-icon fa fa-expand"></i>
+            </a>
+
+            <a href="#" data-action="reload">
+                <i class="ace-icon fa fa-refresh"></i>
+            </a>
+
+            <a href="#" data-action="collapse">
+                <i class="ace-icon fa fa-chevron-up"></i>
+            </a>
+
+            <a href="#" data-action="close">
+                <i class="ace-icon fa fa-times"></i>
+            </a>
+        </div>
+
+        <!-- /section:custom/widget-box.toolbar -->
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main">
+            {% include "area.phtml" with {komponen:wid.isiWidget} %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!--
+File ini untuk pilihan Jawaban True False
+Yaitu tipe 3: dengan hny jawaban Benar dan Salah
+-->
+<div class="table-scrollable">
+    <table class="table table-hover table-condensed" id="tblOpsi">
+        <thead>
+        <tr>
+            <th width="5%">Pilihan<br/>Benar</th>
+            <th width="85%">Jawaban</th>
+            <th colspan="2" width="15%" class="text-center">Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if(params.opsi==null) %}
+        <tr>
+            <th colspan="4" class="text-center">Belum ada Pilihan</th>
+        </tr>
+        {% else %}
+
+        {% for opsis in params.opsi %}
+
+        <tr data-urut="{{opsis.urut}}" class="{% if(opsis.benar==1)%} {{' bg-font-blue-sharp bg-blue-sharp'}}{%endif%}">
+            <td rowspan="2" class="text-center">
+                <input class="theChoice" type="radio" name="rdPilihan" id="rdPilihan_{{opsis.urut}}" {% if(opsis.benar==1)%} {{"checked"}} {%endif%}>
+            </td>
+            <td>{{opsis.jawaban|raw}}</td>
+            <td class="text-center">
+                <button class="btn btn-icon-only blue-hoki btnEdit"><i class="fa fa-edit"></i></button>
+            </td>
+        </tr>
+        <tr data-urut="{{opsis.urut}}" class="bg-grey">
+            <td colspan="3"><strong>Respon:</strong> {{opsis.respon}}</td>
+        </tr>
+        {%endfor%}
+        {% endif %}
+        </tbody>
+    </table>
+</div>

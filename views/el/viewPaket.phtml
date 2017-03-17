@@ -1,0 +1,53 @@
+{% extends "utama.phtml" %}
+
+{% block content %}
+{{ parent() }}
+{{thePage.pageContent.data.induk|json_encode}}
+{% set dataInduk =thePage.pageContent.data.induk%}
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-body ">
+                <div class="h3 font-blue">Judul Soal: {{dataInduk.JUDUL_SOAL}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="portBar">
+    <div class="col-md-12">
+        <div class="portlet light ">
+            <div class="portlet-body text-center" style="min-height: 200px">
+                <div class="btn-group">
+                    <button class="btn blue-steel dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-plus"></i> Tambah Pertanyaan
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:;" class="liSoalBaru" data-tipe="1" data-induk="{{dataInduk.KD_SOAL_INDUK}}"> Pilihan Ganda </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="liSoalBaru" data-tipe="3" data-induk="{{dataInduk.KD_SOAL_INDUK}}"> Benar/Salah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="liSoalBaru" data-tipe="5" data-induk="{{dataInduk.KD_SOAL_INDUK}}"> Uraian/Upload </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group hide">
+                    <button class="btn green-meadow " id="addText" data-induk="{{dataInduk.KD_SOAL_INDUK}}" ><i class="fa fa-plus"></i> Tambah Pengantar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block jsFiles %}
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/lang/summernote-id-ID.min.js" type="text/javascript"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/summerprint.js" type="text/javascript"></script>
+{%endblock%}
+{% block jscript %}
+{% include 'viewPaket.js' with {params:dataInduk}  %}
+{%endblock%}

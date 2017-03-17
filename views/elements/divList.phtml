@@ -1,0 +1,35 @@
+<!--
+Untuk pembuatan list dengan div  secara global, input
+                objTabel->dataTabel =$programLama_data{kode,label};
+                objTabel->idTabel = 'tabelSatu';
+                objTabel->judulTabel = 'Data ' . $hasil->judul;
+                objTabel->kepalaTabel = array(
+-->
+
+{% block divlist %}
+<div class="mt-element-list">
+    <div class="mt-list-head list-simple font-white bg-white  ">
+        <div class="list-head-title-container">
+            <div class="list-date ">&nbsp;</div>
+            <h3 class="list-title">&nbsp;</h3>
+        </div>
+    </div>
+    <div class="mt-list-container list-simple">
+        <ul>
+            {% for tRow in divData.dataTabel%}
+            {% set nomor= loop.index %}
+            <li class="mt-list-item {{divData.rowClassName}} isPointing" data-aidi="{{tRow.id}}">
+                <div class="list-icon-container ">
+                    {{nomor}}
+                </div>
+                <div class="list-datetime font-red">{{tRow.render}} </div>
+                <div class="list-item-content">
+                   {{tRow.label}}
+                </div>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

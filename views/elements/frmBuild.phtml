@@ -1,0 +1,39 @@
+{% block divlist %}
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<form role="form" class="form-horizontal" id="{{ theForm.idElement }}">
+    <div class="form-body">
+        {% for baris in theForm.dataset.koloms %}
+        <div class="form-group form-md-line-input {{baris.nmField}} {{baris.classAtas}} {% if baris.isHidden %} hide {% endif %}  ">
+            <label class="col-md-3 control-label" for="{{baris.nmField}}">{{baris.judulField}}</label>
+            <div class="col-md-9">
+                {% if baris.tipeField == "textarea" %}
+                {% include 'textarea.phtml' with {pars:baris,jumRows:5} %}
+                {% elseif baris.tipeField == "select" %}
+                {% include 'select.phtml' with {pars:baris} %}
+                {% elseif baris.tipeField == "span" %}
+                <span class="form-control {{baris.className}}">{{baris.defValue}}</span>
+                {% else %}
+                <input type="text" class="form-control {{baris.className}}  " id="{{baris.nmField}}" name="{{baris.nmField}}" placeholder="{{baris.placeholder}}"
+                       value="{{baris.defValue}}" data-init="{{baris.defValue}}">
+                {% endif %}
+                <div class="form-control-focus"></div>
+
+            </div>
+        </div>
+        {% endfor%}
+        <input type="hidden" value="{{theForm.dataset.chuck}}" class="chuck">
+        {% if theForm.dataset.buttonState %}
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    {% for tombols in theForm.dataset.buttons%}
+                    {% include 'tombol.phtml' with {tombol:tombols} %}
+                    {% endfor%}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</form>
+<!-- END SAMPLE FORM PORTLET-->
+{% endblock %}

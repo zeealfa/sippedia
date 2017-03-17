@@ -1,0 +1,51 @@
+<!--
+File ini untuk pilihan Jawaban multiple
+Yaitu tipe 1: Jawaban ganda dengan 1 jawaban benar
+dan tipe 2 dengan beberpaa jawaban bernar
+-->
+<div class="table-scrollable">
+    <table class="table table-hover table-condensed" id="tblOpsi">
+        <thead>
+        <tr>
+            <th width="5%">Pilih</th>
+            <th width="60%">Deskripsi File yang harus diunggah</th>
+            <th width="10%">Jenis File</th>
+            <th width="10%">Wajib?</th>
+            <th colspan="2" width="15%" class="text-center">Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if(params.opsi==null) %}
+        <tr>
+            <th colspan="4" class="text-center">Belum ada Pilihan</th>
+        </tr>
+        {% else %}
+
+        {% for opsis in params.opsi %}
+        <tr data-urut="{{opsis.urut}}" ">
+            <td class="text-center">
+                <input class="theChoice" type="checkbox" name="rdPilihan" id="rdPilihan_{{opsis.urut}}">
+            </td>
+            <td>{{opsis.deskripsi}}</td>
+            <td>{{opsis.tipefile}}</td>
+            <td>{{opsis.wajib}}</td>
+            <td class="text-center">
+                <button class="btn btn-icon-only blue-hoki btnEdit"><i class="fa fa-edit"></i></button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-icon-only red btnHapus"><i class="fa fa-times"></i></button>
+            </td>
+        </tr>
+
+        {%endfor%}
+        {% endif %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                {% include 'tombol.phtml' with {tombol:{idButton:'btnTambahOpsi',tipe:'button',label:'Tambah',className:'blue-steel',icon:'fa-plus'}} %}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

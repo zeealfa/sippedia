@@ -1,0 +1,110 @@
+{% extends "utama.phtml" %}
+{% block pageSidebar %}
+page-sidebar-closed
+{%endblock%}
+{% block pageSidebarMenu %}
+page-sidebar-menu-closed
+{%endblock%}
+
+{% block content %}
+{{ parent() }}
+
+<h3 class="page-title">Analisa Hasil Ujian</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet red-sunglo box">
+            <div class="portlet-title ">
+                <div class="caption"> {{thePage.pageContent.ujian.NAMA_UJIAN}}</div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th width="30%">Mata Pelajaran</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.NM_MATA_PELAJARAN}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.TANGGAL_MULAI}} hingga {{thePage.pageContent.ujian.TANGGAL_AKHIR}}</td>
+                    </tr>
+                    <tr>
+                        <th>Durasi ujian</th>
+                        <td colspan="2">{{thePage.pageContent.ujian.DURASI_UJIAN}} menit</td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah Soal</th>
+                        <td>{{thePage.pageContent.ujian.JUMLAH_SOAL}} dari total <span id="spanTotal">{{thePage.pageContent.jumlahSoal}}</span> soal
+                            {{thePage.pageContent.ujian.NM_SCOPE_SOAL|lower}}
+                        </td>
+                        <td width="10%">
+                            <button class="btn btn-sm blue-sharp hide" id="btnSoal">Detail Soal</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah Peserta</th>
+                        <td><span id="spanPeserta">{{thePage.pageContent.jumlahPeserta}}</span> peserta didik</td>
+                        <td width="10%">
+                            <button class="btn btn-sm green-soft hide" id="btnPeserta">Detail Peserta</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3"><button class="btn btn-sm green-soft" id="btnCetak"><i class="fa fa-download"></i> Download</button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet blue-sharp box">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-list"></i>Detail Hasil Peserta
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIS</th>
+                        <th>Nama Siswa</th>
+                        <th>Selesai</th>
+                        <th>Terjawab</th>
+                        <th>Jawaban Benar</th>
+                        <th>Jawaban Salah</th>
+                        <th>Prosentase</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%set nomor=1%}
+                    {% for siswa in thePage.pageContent.peserta%}
+                    <tr>
+                        <td>{{nomor}}</td>
+                        <td>{{siswa.detail.NO_INDUK}}</td>
+                        <td>{{siswa.detail.NAMA_SISWA}}</td>
+                        <td>{{siswa.selesai}}</td>
+                        <td class="text-right">{{siswa.jawab}}</td>
+                        <td class="text-right">{{siswa.benar}}</td>
+                        <td class="text-right">{{siswa.salah}}</td>
+                        <td class="text-right">{{siswa.pros}}%</td>
+                    </tr>
+                    {%set nomor=nomor+1%}
+                    {%endfor%}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jscript %}
+{% include 'resultUjian.js' with {params:thePage.pageContent.ujian} %}
+{%endblock%}

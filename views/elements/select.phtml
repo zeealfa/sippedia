@@ -1,0 +1,12 @@
+<select class="form-control {{pars.className}}" id="{{pars.nmField}}" name="{{pars.nmField}}" placeholder="{{pars.placeholder}}"  data-language="id" {{pars.isRequired}}
+data-init="{{pars.defValue}}"
+>
+    <option value="">Pilih Salah Satu</option>
+    {% for opt in pars.selOptions %}
+    {% if (opt.id==pars.defValue)%}
+    {% set sel='selected' %}
+    {% else %} {% set sel='' %}
+    {% endif %}
+    <option value="{{opt.id}}" {{sel}}>{{opt.text}}</option>
+    {% endfor %}
+</select>

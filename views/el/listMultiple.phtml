@@ -1,0 +1,52 @@
+<!--
+File ini untuk pilihan Jawaban multiple
+Yaitu tipe 1: Jawaban ganda dengan 1 jawaban benar
+dan tipe 2 dengan beberpaa jawaban bernar
+-->
+<div class="table-scrollable">
+    <table class="table table-hover table-condensed" id="tblOpsi">
+        <thead>
+        <tr>
+            <th width="5%">Pilihan<br/>Benar</th>
+            <th width="85%">Jawaban</th>
+            <th colspan="2" width="15%" class="text-center">Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if(params.opsi==null) %}
+        <tr>
+            <th colspan="4" class="text-center">Belum ada Pilihan</th>
+        </tr>
+        {% else %}
+
+        {% for opsis in params.opsi %}
+        {% if(params.soal.jenis==1)%} {% set theInput="radio" %} {%else%} {% set theInput="checkbox" %} {%endif%}
+        <tr data-urut="{{opsis.urut}}" class="{% if(opsis.benar==1)%} {{' bg-font-blue-sharp bg-blue-sharp'}}{%endif%}">
+            <td rowspan="2" class="text-center">
+                <input class="theChoice" type="{{theInput}}" name="rdPilihan" id="rdPilihan_{{opsis.urut}}" {% if(opsis.benar==1)%} {{"checked"}} {%endif%}>
+            </td>
+            <td>{{opsis.jawaban|raw}}</td>
+            <td class="text-center">
+                <button class="btn btn-icon-only blue-hoki btnEdit"><i class="fa fa-edit"></i></button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-icon-only red btnHapus"><i class="fa fa-times"></i></button>
+            </td>
+        </tr>
+        <tr data-urut="{{opsis.urut}}" class="bg-grey">
+            <td colspan="3"><strong>Respon:</strong> {{opsis.respon}}</td>
+        </tr>
+        {%endfor%}
+        {% endif %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                {% include 'tombol.phtml' with {tombol:{idButton:'btnTambahOpsi',tipe:'button',label:'Tambah',className:'blue-steel',icon:'fa-plus'}} %}
+                {% include 'tombol.phtml' with {tombol:{idButton:'btnSimpanJawaban',tipe:'button',label:'Simpan dan Tambah Soal',className:'green hide',icon:'fa-save'}} %}
+<!--                {% include 'tombol.phtml' with {tombol:{idButton:'btnSimpanList',tipe:'button',label:'Simpan dan Tambah Soal',className:'green hide',icon:'fa-save'}} %}-->
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

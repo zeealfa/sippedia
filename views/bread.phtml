@@ -1,0 +1,22 @@
+{% set jum=1 %}
+<div class="breadcrumbs ace-save-state " id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="/">Depan</a>
+        </li>
+        {% for crumb in breads %}
+            {% if(jum==breads|length) %}
+                <li class="active">
+                    {{ crumb.label }}
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ crumb.target }}">{{ crumb.label }}</a>
+                </li>
+            {% endif %}
+            {% set jum=jum+1 %}
+        {% endfor %}
+    </ul><!-- /.breadcrumb -->
+
+</div>

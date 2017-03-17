@@ -1,0 +1,75 @@
+{% extends "utama.phtml" %}
+{% block pageSidebarMenu%}
+{{page-sidebar-menu-closed}}
+{% endblock %}
+
+
+{% block content %}
+{{ parent() }}
+{% set theSoal=thePage.pageContent.data.soal%}
+{% set theOpsi=thePage.pageContent.data.opsi%}
+{% set tipeSoal=theSoal.jenis%}
+{% if(theSoal!=null) %}
+
+
+<h3 class="page-title font-blue">Konfigurasi Soal</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue-hoki">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="icon-file "></i>
+                    <span class="caption-subject bold uppercase">Detail Soal</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                {% include 'frmBuild.phtml' with {theForm:thePage.pageContent.element.forms[0]} %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="areaJawaban">
+    <div class="col-md-12">
+        <div class="portlet box yellow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-list"></i>Pengaturan Jawaban
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body" id="divJawaban">
+            {% if (tipeSoal==1 or tipeSoal==2) %}
+            {% include 'listMultiple.phtml' with {params:thePage.pageContent.data} %}
+            {% elseif tipeSoal==3%}
+            {% include 'trueFalse.phtml' with {params:thePage.pageContent.data} %}
+            {% elseif tipeSoal==5%}
+            {% include 'listFileUpload.phtml' with {params:thePage.pageContent.data} %}
+            {%endif%}
+        </div>
+    </div>
+</div>
+{% else %}
+{% include 'nodata.phtml' %}
+{% endif %}
+{% endblock %}
+{% block jsFiles %}
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/select2/js/select2.min.js"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/select2/js/i18n/id.js"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/lang/summernote-id-ID.min.js" type="text/javascript"></script>
+<script src="https://stock.schoolmedia.id/f01/assets/global/plugins/bootstrap-summernote/summerprint.js" type="text/javascript"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=/mathJaxConfig.js"></script>
+
+{%endblock%}
+{% block jscript %}
+{% include 'summer.js' %}
+{% include 'updatesoal.js' with {params:thePage.pageContent.data.soal} %}
+{%include 'listMultiple.js' with {params:thePage.pageContent.data.soal} %}
+{%endblock%}
+
+{%block jscriptFunc%}
+{%include 'listMultipleFunc.js' with {params:thePage.pageContent.data.soal} %}
+{%endblock%}

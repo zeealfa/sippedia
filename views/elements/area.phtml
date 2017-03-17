@@ -1,0 +1,7 @@
+{#mengendalikan isi setiap div#}
+{% if komponen.displayType=="tabel" %}
+    {% include "tabel.phtml" with {theTable:komponen} %}
+{% endif %}
+{% if komponen.displayType=="widget" %}
+    {% include "widget.phtml" with {theWidget:komponen} %}
+{% endif %}
