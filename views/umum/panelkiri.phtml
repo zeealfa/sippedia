@@ -1,9 +1,8 @@
-{% set Sambutan=DataTab.Sambutan %}
-{% set Syarat=DataTab.Syarat %}
+
 <div class="col-xs-12 " style="border-bottom: dotted 1px #E2E2E2">
     <!-- #section:elements.tab -->
     <div class="col-xs-8">
-        <div class="h3 ">Media Terpopuler</div>
+        <div class="h3 ">{{ thePage.judul }}</div>
     </div>
     <div class="col-xs-4 push-right" style="padding-top: 5px" >
         <button class="btn btn-md btn-primary btn-round pull-right" >Lihat Selengkapnya</button>
@@ -11,14 +10,15 @@
     <!-- /section:elements.tab -->
 </div>
 <div class="col-xs-12">
+    {% for meds in thePage.media %}
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
             <img src="http://placehold.it/320x150" alt="">
             <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
+                {#<h4 class="pull-right">Gratis</h4>#}
+                <h4><a href="#"><small>{{ meds.judulMedia }}</small></a>
                 </h4>
-                <p>Keterangan tentang produk atau media</p>
+                <p>{{ meds.pembuatMedia }}</p>
             </div>
             <div class="ratings">
                 <p class="pull-right">15 review</p>
@@ -32,110 +32,5 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
-                </h4>
-                <p>Keterangan tentang produk atau media</p>
-            </div>
-            <div class="ratings">
-                <p class="pull-right">15 review</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
-                </h4>
-                <p>Keterangan tentang produk atau media</p>
-            </div>
-            <div class="ratings">
-                <p class="pull-right">15 review</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
-                </h4>
-                <p>Keterangan tentang produk atau media</p>
-            </div>
-            <div class="ratings">
-                <p class="pull-right">15 review</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
-                </h4>
-                <p>Keterangan tentang produk atau media</p>
-            </div>
-            <div class="ratings">
-                <p class="pull-right">15 review</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="http://placehold.it/320x150" alt="">
-            <div class="caption">
-                <h4 class="pull-right">Gratis</h4>
-                <h4><a href="#">Nama Media</a>
-                </h4>
-                <p>Keterangan tentang produk atau media</p>
-            </div>
-            <div class="ratings">
-                <p class="pull-right">15 review</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-
+    {% endfor %}
 </div>

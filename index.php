@@ -8,12 +8,13 @@ require_once('mdl/classUser.php');
 
 $sessid = '-';
 $isLogin = false;
-if (isset($_SERVER['PATH_INFO'])) {
-    $builder[0] = $_SERVER['PATH_INFO'];
-    $filters = trim($_SERVER['PATH_INFO'], '/');
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $builder[0] = $_SERVER['REQUEST_URI'];
+    $filters = trim($_SERVER['REQUEST_URI'], '/');
     $f = explode('/', $filters);
 } else {
-    $f[0] = "utama";
+    $f[0] = "";
 }
 
 $theUser = new classUser();
@@ -77,31 +78,50 @@ $thePage = array();
 
 if (($f[0] == "#") || ($f[0] == ""))
     $fileTarget = "utama";
-$isActive[$f[0]] = 1;
 switch ($f[0]) {
     default:
         $pageData = array();
-        $fileTarget = $f[0];
+        $fileTarget = "utama";
         break;
     case 'smp':
         $thePage = array(
-            "judul"=>"Sekolah Menengah Pertama"
+            "judul" => "Sekolah Menengah Pertama",
+            "media" => array(
+                array(
+                    "kodeMedia" => 1,
+                    "judulMedia" => "Jenis-jenis kelembagaan sosial di indonesia- IPS kelas 7",
+                    "pembuatMedia" => "Dita Ratna Pratiwi"
+                )
+            )
         );
         $fileTarget = "utama";
+        $isActive['smp'] = 1;
         break;
     case 'sma':
         $thePage = array(
-            "judul"=>"Sekolah Menengah Atas"
+            "judul" => "Sekolah Menengah Atas",
+            "media" => array(
+                array(
+                    "kodeMedia" => 2,
+                    "judulMedia" => "Perawatan PC - SMK Kelas X",
+                    "pembuatMedia" => "Kanzul Fikri Fauzi"
+                )
+            )
+
         );
         $fileTarget = "utama";
+        $isActive['sma'] = 1;
         break;
     case 'tag':
         $thePage = array(
-            "judul"=>"Ditandai"
+            "judul" => "Ditandai"
         );
         $fileTarget = "utama";
+        $isActive['tag'] = 1;
+
         break;
 }
+
 #WAJIB
 $globalVar = array(
     "namaApp" => "Sippedia",
