@@ -3,7 +3,7 @@
 require_once('lib/Twig/Autoloader.php');
 require_once('lib/Twig/LoaderInterface.php');
 require_once('mdl/classUser.php');
-require_once('mdl/reqs.php');
+//require_once('mdl/reqs.php');
 
 
 $sessid = '-';

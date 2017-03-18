@@ -19,15 +19,16 @@ class classBaca extends MysqliDatabase
     public function __construct()
     {
         include('config.php');
-        $CS = explode(';', $db_param_reader);
-        foreach ($CS as $Key => $Element) {
+//        $CS = explode(';', $db_param_reader);
+/*        foreach ($CS as $Key => $Element) {
             $Element = explode('=', $Element);
             if (isset($Element[1])) {
                 $CS[trim($Element[0])] = trim($Element[1]);
                 unset($CS[$Key]);
             }
-        }
-        $this->dataCS = $CS;
+        }*/
+//        $this->dataCS = $CS;
+        $this->dataCS = null;
         @$this->connect(empty($CS['server']) ? 'localhost' : $CS['server'],
             empty($CS['username']) ? 'root' : $CS['username'],
             empty($CS['password']) ? '' : $CS['password'],
@@ -35,9 +36,9 @@ class classBaca extends MysqliDatabase
             empty($CS['port']) ? 3306 : $CS['port'],
             empty($CS['socket']) ? null : $CS['socket']);
         $this->keyApp = $kunci;
-        if ($this->connect_errno) {
-            if ($ThrowExceptions) throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
-        }
+//        if ($this->connect_errno) {
+//            if ($ThrowExceptions) throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+//        }
     }
 
     public function frmBuilder($config)
