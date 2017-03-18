@@ -11,7 +11,7 @@
 </div>
 <div class="col-xs-12">
     {% for meds in thePage.media %}
-    <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="col-sm-4 col-lg-4 col-md-4" style="max-height: 320px;min-height: 320px">
         <div class="thumbnail">
             <img src="asset/content/cover/{{ meds.kodeMedia }}.jpg" width="320px" height="150px" alt="">
             <div class="caption">
@@ -19,9 +19,11 @@
                 <h4><a href="#"><small>{{ meds.judulMedia }}</small></a>
                 </h4>
                 <p>{{ meds.pembuatMedia }}</p>
+                <p>{{ meds.tahunMedia }}</p>
             </div>
             <div class="ratings">
-                <p class="pull-right">15 review</p>
+                <p class="pull-right"><a class="btn btn-xs btn-primary btn-round" href="asset/content/media/{{ meds.fileMedia }}" target="_blank"><i class="ace-icon fa
+                fa-download"></i> Download</a> </p>
                 <p>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
