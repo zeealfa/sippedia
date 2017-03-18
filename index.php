@@ -77,140 +77,29 @@ $thePage = array();
 
 if (($f[0] == "#") || ($f[0] == ""))
     $fileTarget = "utama";
-
+$isActive[$f[0]] = 1;
 switch ($f[0]) {
     default:
         $pageData = array();
         $fileTarget = $f[0];
         break;
-    case 'berandaAdmin':
-        $fileTarget = 'standar';
-        $breadCrumbs = array(
-            array('label' => 'Beranda', 'target' => 'berandaAdmin'),
-        );
+    case 'smp':
         $thePage = array(
-            "judul" => "Judul Halaman",
-            "subJudul" => "Sub Judul Halaman",
-            "rows" => array(
-                array(
-                    "divs" => array(
-                        array(
-                            "displayType" => "tabel",
-                            "displayKomponen" => array(//Menyesuaikan display Type
-                                "judulTabel" => "Contoh Tabel",
-                                "headerTabel" => array("No", "Nama", "Alamat", "Kontrol"),
-                                "dataTabel" => array(
-                                    array("1", "Ciprut", "Jalan", "OK"),
-                                    array("2", "alei", "VBI", "OKOK"),
-                                    array("3", "Cita", "VBI 2", "Cancel"),
-                                )
-                            )
-                        )
-                    )
-                )
-            ),
+            "judul"=>"Sekolah Menengah Pertama"
         );
+        $fileTarget = "utama";
         break;
-    case 'tabelPage':
-        $fileTarget = 'standar';
-        $breadCrumbs = array(
-            array('label' => 'Halaman Tabel', 'target' => 'tabelPage'),
-        );
+    case 'sma':
         $thePage = array(
-            "judul" => "Untuk Tabel",
-            "subJudul" => "Sub Judul Tabel",
-            "rows" => array( #untuk row lebih dari 1
-                array("idName" => 1, "divs" => array(
-                    array("className" => "col-xs-6",
-                        "idName" => "div1",
-                        "displayType" => "tabel",
-                        "displayKomponen" => array(//Menyesuaikan display Type
-                            "judulTabel" => "Contoh Tabel",
-                            "headerTabel" => array("No", "Nama", "Alamat", "Kontrol"),
-                            "dataTabel" => array(
-                                array("1", "Ciprut", "Jalan", "OK"),
-                                array("2", "alei", "VBI", "OKOK"),
-                                array("3", "Cita", "VBI 2", "Cancel"),
-                            )
-                        )
-                    ),
-                    array("className" => "col-xs-3",
-                        "idName" => "div1",
-                        "displayType" => "tabel",
-                        "displayKomponen" => array(//Menyesuaikan display Type
-                            "judulTabel" => "Contoh Tabel",
-                            "headerTabel" => array("No", "Nama", "Alamat", "Kontrol"),
-                            "dataTabel" => array(
-                                array("1", "Ciprut", "Jalan", "OK"),
-                                array("2", "alei", "VBI", "OKOK"),
-                                array("3", "Cita", "VBI 2", "Cancel"),
-                            )
-                        )
-                    )
-                )),#row pertama
-                array("idName" => 1, "divs" => array(
-                    array("className" => "col-xs-4",
-                        "idName" => "div1",
-                        "displayType" => "tabel",
-                        "displayKomponen" => array(//Menyesuaikan display Type
-                            "judulTabel" => "Contoh Tabel",
-                            "headerTabel" => array("No", "Nama", "Alamat", "Kontrol"),
-                            "dataTabel" => array(
-                                array("1", "Ciprut", "Jalan", "OK"),
-                                array("2", "alei", "VBI", "OKOK"),
-                                array("3", "Cita", "VBI 2", "Cancel"),
-                            )
-                        )
-                    ),
-                    array("className" => "col-xs-8",
-                        "idName" => "div2",
-                        "displayType" => "widget",
-                        "displayKomponen" => array(//Menyesuaikan display Type
-                            "judulWidget" => "Contoh Widget",
-                            "idName" => "theWid",
-                            "isiWidget" => array(
-                                "displayType" => "tabel",
-                                "displayKomponen" => array(//Menyesuaikan display Type
-                                    "judulTabel" => "Contoh Tabel",
-                                    "headerTabel" => array("No", "Nama", "Alamat", "Wid Kontrol"),
-                                    "className" => "",
-                                    "idName" => "tabelWid",
-                                    "dataTabel" => array(
-                                        array("1", "Ciprut", "Jalan", "OK"),
-                                        array("2", "alei", "VBI", "OKOK"),
-                                        array("3", "Cita", "VBI 2", "Cancel"),
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )),#row kedua
-            )
+            "judul"=>"Sekolah Menengah Atas"
         );
+        $fileTarget = "utama";
         break;
-    case "formPage":
-        $fileTarget = "forms";
-        $breadCrumbs = array(
-            array('label' => 'Halaman Tabel', 'target' => 'tabelPage'),
-        );
+    case 'tag':
         $thePage = array(
-            "judul" => "Judul Halaman",
-            "subJudul" => "Sub Judul Halaman",
-            "displayType" => "tabel",
-            "displayKomponen" => array(//Menyesuaikan display Type
-                "judulTabel" => "Contoh Tabel",
-                "headerTabel" => array("No", "Nama", "Alamat", "Kontrol"),
-                "dataTabel" => array(
-                    array("1", "Ciprut", "Jalan", "OK"),
-                    array("2", "alei", "VBI", "OKOK"),
-                    array("3", "Cita", "VBI 2", "Cancel"),
-                )
-            )
+            "judul"=>"Ditandai"
         );
-
-        #customisasi page
-        $pageConfig['headerNav'] = false;
-        $pageConfig['hasFooter'] = false;
+        $fileTarget = "utama";
         break;
 }
 #WAJIB
@@ -222,11 +111,9 @@ $globalVar = array(
 );
 
 $menuAdmin = array(
-    array('label' => 'Playgroup/TK', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#5ABA02'),
-    array('label' => 'SD Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#ED3A3D'),
-    array('label' => 'SMP Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#1F92CA'),
-    array('label' => 'SMA Sederajat', 'target' => '', 'icon' => 'fa-file-text-o','warna'=>'#536DFD'),
-    array('label' => 'Ditandai', 'target' => '', 'icon' => 'fa-tag','warna'=>'#FC6800'),
+    array('label' => 'SMP Sederajat', 'target' => 'smp', 'icon' => 'fa-file-text-o', 'warna' => '#1F92CA', 'isActive' => @$isActive['smp']),
+    array('label' => 'SMA Sederajat', 'target' => 'sma', 'icon' => 'fa-file-text-o', 'warna' => '#536DFD', 'isActive' => @$isActive['sma']),
+    array('label' => 'Ditandai', 'target' => 'tag', 'icon' => 'fa-tag', 'warna' => '#FC6800', 'isActive' => @$isActive['tag']),
 );
 $theUser = array(
     "namaUser" => "Ciprut",
@@ -251,7 +138,7 @@ Twig_Autoloader::register();
 //$loader = new Twig_Loader_Filesystem(array('views', 'views/el', 'views/sikad', 'views/elements', 'jsc'));
 $loader = new Twig_Loader_Filesystem(array('views', 'views/umum', 'views/admin', 'views/elements'));
 $twig = new Twig_Environment($loader, array(
-    'cache' => '/var/www/html/sikadfour/local/cache',
+    'cache' => '/tmp',
     'auto_reload' => true,
     'debug' => true
 ));

@@ -27,11 +27,17 @@
 
     <ul class="nav nav-list">
         {% for menu in menus %}
-            <li class="">
+            {% if (menu.isActive==1) %}
+                {% set nmClass='active' %}
+            {% endif %}
+            {% if (menu.isActive=='') %}
+                {% set nmClass='' %}
+            {% endif %}
+            <li class="{{ nmClass }}">
                 <a href="{{ menu.target }}">
                     <button class="btn btn-xs " style="background-color: {{ menu.warna }} !important;border-color:{{ menu.warna }};color: white"><i
                                 class="menu-icon fa {{ menu.icon }}"></i></button>
-                    <span class="menu-text"> {{ menu.label }} </span>
+                    <span class="menu-text"> {{ menu.label }}{{ menu.isActive }} </span>
                 </a>
                 <b class="arrow"></b>
             </li>
