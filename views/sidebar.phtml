@@ -10,7 +10,6 @@
         <div class="sidebar-shortcuts-large " id="sidebar-shortcuts-large">
             <i class="ace-icon fa fa-th-large"></i>
             Kategori Media
-
             <!-- /section:basics/sidebar.layout.shortcuts -->
         </div>
         <div class="sidebar-shortcuts-mini hide" id="sidebar-shortcuts-mini">
@@ -22,8 +21,17 @@
 
             <span class="btn btn-danger"></span>
         </div>
-    </div><!-- /.sidebar-shortcuts -->
 
+    </div><!-- /.sidebar-shortcuts -->
+    <div class="text-center">
+        <form class="form-search">
+        <span class="input-icon input-icon-right">
+        <input type="text" class="nav-search-input input-sm" id="nav-search-input" autocomplete="off"/>
+        <i class="ace-icon fa fa-search nav-search-icon" style="color: #039BE5"></i>
+        </span>
+        </form>
+
+    </div>
     <ul class="nav nav-list">
         {% for menu in menus %}
             {% if (menu.isActive==1) %}
@@ -52,8 +60,9 @@
     <!-- /section:basics/sidebar.layout.minimize -->
     <div class="col-xs-12 " style="padding-top: 10px;left: 10px">
         <ul class="nav nav-list">
-            <li><i class="ace-icon fa fa-cog"></i> Aplikasi</li>
+            <li><a><i class="ace-icon fa fa-cog"></i> Aplikasi</a></li>
             <li><a><i class="ace-icon fa fa-exclamation"></i> Informasi</a></li>
+            <li><a><i class="ace-icon fa fa-user"></i> Akun</a></li>
         </ul>
     </div>
 

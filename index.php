@@ -81,18 +81,15 @@ if (($f[0] == "#") || ($f[0] == ""))
 switch ($f[0]) {
     default:
         $pageData = array();
-        $fileTarget = "utama";
-        break;
-    case 'smp':
         $thePage = array(
-            "judul" => "Sekolah Menengah Pertama",
+            "judul" => "Media Pembelajaran SMP Sederajat",
             "media" => array(
                 array(
                     "kodeMedia" => 1,
                     "judulMedia" => "Jenis-jenis kelembagaan sosial di indonesia- IPS kelas 7",
                     "pembuatMedia" => "Dita Ratna Pratiwi",
                     "tahunMedia"=>"",
-                    "fileMedia"=>"1.mp4"
+                    "fileMedia"=>"1.jpg"
                 ),
                 array(
                     "kodeMedia" => 2,
@@ -106,7 +103,78 @@ switch ($f[0]) {
                     "judulMedia" => "PENGARUH KEUNGGULAN LOKASI TERHADAP KOLONIALISME BARAT",
                     "pembuatMedia" => "",
                     "tahunMedia"=>"",
-                    "fileMedia"=>"3.exe"
+                    "fileMedia"=>"3.jpg"
+                ),
+                array(
+                    "kodeMedia" => 4,
+                    "judulMedia" => "Perawatan PC - SMK Kelas X",
+                    "pembuatMedia" => "Kanzul Fikri Fauzi",
+                    "tahunMedia"=>"",
+                    "fileMedia"=>"4.jpg"
+                ),
+                array(
+                    "kodeMedia" => 5,
+                    "judulMedia" => "Rekayasa perangkat lunak - SMK kelas 12",
+                    "pembuatMedia" => "Ary Santosa",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"5.png"
+                ),
+                array(
+                    "kodeMedia" => 6,
+                    "judulMedia" => "Teknik Telekomunikasi - SMK kelas 11",
+                    "pembuatMedia" => "Imam Mudi",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"6.jpg"
+                ),
+                array(
+                    "kodeMedia" => 7,
+                    "judulMedia" => "Mengasah kemampuan ekonomi - SMA kelas 10",
+                    "pembuatMedia" => "Jusuf Apandy",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"7.png"
+                ),
+                array(
+                    "kodeMedia" => 8,
+                    "judulMedia" => "menyelami fenomena sosial di masyarakat - SMA kelas 11",
+                    "pembuatMedia" => "Sony Faizal",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"8.jpg"
+                ),
+                array(
+                    "kodeMedia" => 9,
+                    "judulMedia" => "Bahasa Inggris - SMA kelas 12",
+                    "pembuatMedia" => "SIti Maisaroh",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"9.png"
+                ),
+            )
+        );
+        $fileTarget = "utama";
+        break;
+    case 'smp':
+        $thePage = array(
+            "judul" => "Media Pembelajaran SMP Sederajat",
+            "media" => array(
+                array(
+                    "kodeMedia" => 1,
+                    "judulMedia" => "Jenis-jenis kelembagaan sosial di indonesia- IPS kelas 7",
+                    "pembuatMedia" => "Dita Ratna Pratiwi",
+                    "tahunMedia"=>"",
+                    "fileMedia"=>"1.jpg"
+                ),
+                array(
+                    "kodeMedia" => 2,
+                    "judulMedia" => "Kecerdasan sosial - SMP kelas 8",
+                    "pembuatMedia" => "Imron Saefudin",
+                    "tahunMedia"=>"2016",
+                    "fileMedia"=>"2.png"
+                ),
+                array(
+                    "kodeMedia" => 3,
+                    "judulMedia" => "PENGARUH KEUNGGULAN LOKASI TERHADAP KOLONIALISME BARAT",
+                    "pembuatMedia" => "",
+                    "tahunMedia"=>"",
+                    "fileMedia"=>"3.jpg"
                 ),
             )
         );
@@ -115,14 +183,14 @@ switch ($f[0]) {
         break;
     case 'sma':
         $thePage = array(
-            "judul" => "Sekolah Menengah Atas",
+            "judul" => "Media Pembelajaran SMA Sederajat",
             "media" => array(
                 array(
                     "kodeMedia" => 4,
                     "judulMedia" => "Perawatan PC - SMK Kelas X",
                     "pembuatMedia" => "Kanzul Fikri Fauzi",
                     "tahunMedia"=>"",
-                    "fileMedia"=>"4.pptm"
+                    "fileMedia"=>"4.jpg"
                 ),
                 array(
                     "kodeMedia" => 5,
@@ -172,6 +240,9 @@ switch ($f[0]) {
         $fileTarget = "utama";
         $isActive['tag'] = 1;
 
+        break;
+    case 'login':
+        $fileTarget = "login";
         break;
 }
 
