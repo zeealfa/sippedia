@@ -159,10 +159,14 @@
             url: '/',
             data: {reqs: $('#form-login').serializeArray(), chuck: 'login'},
 
+        }).success(function(x) {
+            swal('Masuk', 'Anda login, selamat bekerja', 'success');
+
+        }).always(function() {
+            open('/', '_self');
+
         })
 
-        swal('Masuk', 'Anda login, selamat bekerja', 'success');
-//        open('/', '_self');
     }
 </script>
 </body>

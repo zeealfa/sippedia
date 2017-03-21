@@ -1,4 +1,5 @@
 <?php @session_start();
+session_destroy();
 //if ($controls != '') $controls = str_replace('/', '', $controls);
 require_once('lib/Twig/Autoloader.php');
 require_once('lib/Twig/LoaderInterface.php');
@@ -7,7 +8,6 @@ require_once('mdl/reqs.php');
 
 
 $sessid = '-';
-$isLogin = false;
 
 if (isset($_SERVER['REQUEST_URI'])) {
     $builder[0] = $_SERVER['REQUEST_URI'];
@@ -49,20 +49,18 @@ else {
 
 
 */
-
-
+$thePage = array();
 if (isset($_POST['reqs'])) {
     $result = false;
     if (isset($_POST['chuck'])) {
         $olah = new reqs();
-        $target = array("tipe"=>$_POST['chuck'],"db"=>"u999177855_ubyny","tb"=>"t_user");
+        $target = array("tipe" => $_POST['chuck'], "db" => "u999177855_ubyny", "tb" => "t_user");
         $result = $olah->processThis($target, $_REQUEST['reqs']);
+        $_SESSION['isLogin']=1;
     }
-    echo json_encode($result);
+//    echo json_encode($result);
 //    session_destroy();
-    die();
 }
-
 
 #TEMPORARY data
 $pageConfig = array(
@@ -71,7 +69,6 @@ $pageConfig = array(
     "hasFooter" => true,
 );
 $breadCrumbs = array();
-$thePage = array();
 
 if (($f[0] == "#") || ($f[0] == ""))
     $fileTarget = "utama";
@@ -316,6 +313,8 @@ $twig->addExtension(new Twig_Extension_Debug());
  *
  *
  */
+$thePage["isLogin"]=@$_SESSION['isLogin'];
+
 echo $twig->render($fileTarget . ".phtml", array(
     "globalVar" => $globalVar,
     "menus" => $menuAdmin,
@@ -323,7 +322,7 @@ echo $twig->render($fileTarget . ".phtml", array(
     "userData" => $theUser,
     "mailBox" => $mailBox,
     "thePage" => $thePage,
-    "pageConfig" => $pageConfig
+    "pageConfig" => $pageConfig,
 ));
 /*
 $pageConfig = $theUser->getUserMenu($target, $f);

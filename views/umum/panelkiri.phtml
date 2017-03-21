@@ -1,4 +1,3 @@
-
 <div class="col-xs-12 " style="border-bottom: dotted 1px #E2E2E2">
     <!-- #section:elements.tab -->
     <div class="col-xs-8">
@@ -22,8 +21,14 @@
                 <p>{{ meds.tahunMedia }}</p>
             </div>
             <div class="ratings">
-                <p class="pull-right"><a class="btn btn-xs btn-primary btn-round" href="login" target="_self"><i class="ace-icon fa
-                fa-download"></i> Download</a> </p>
+                <p class="pull-right">
+                    {% if (thePage.isLogin==1) %}
+                    <a class="btn btn-xs btn-primary btn-round" href="asset/content/cover/{{ meds.fileMedia}}" target="_self"><i class="ace-icon fa fa-download"></i> Download</a> </p>
+                {% else %}
+                    <a class="btn btn-xs btn-success btn-round" href="login" target="_self"><i class="ace-icon fa fa-sign-in"></i> Login</a> </p>
+
+                {% endif %}
+
                 <p>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
