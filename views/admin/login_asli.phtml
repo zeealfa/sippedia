@@ -62,24 +62,15 @@
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right frmInput ">
-															<input type="text" class="form-control required" placeholder="Nama" id="txtName" name="nama_user"
-                                                                   autocomplete="off"/>
-															<i class="ace-icon fa fa-id-card-o frmInput"></i>
-														</span>
-                                            </label>
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right frmInput ">
-															<input type="email" class="form-control required" placeholder="Email" id="txtUsername" name="email_user"
-                                                                   autocomplete="off"/>
+															<input type="text" class="form-control required" placeholder="Email" id="txtUsername" autocomplete="off"/>
 															<i class="ace-icon fa fa-user frmInput"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right frmInput">
-															<input type="text" class="form-control required" placeholder="Profesi" id="txtProfesi" name="profesi_user"
-                                                                   autocomplete="off"/>
-															<i class="ace-icon fa fa-black-tie frmInput"></i>
+															<input type="password" class="form-control required" placeholder="Password" id="txtPass"/>
+															<i class="ace-icon fa fa-lock frmInput"></i>
 														</span>
                                             </label>
 
@@ -88,8 +79,8 @@
                                             <div class="clearfix">
                                                 <div class="col-xs-12 text-center">
                                                     <button class="width-35 text-center  btn btn-sm btn-primary" id="btnLogin">
-                                                        <i class="ace-icon fa fa-list-ul"></i>
-                                                        <span class="bigger-110">Daftar</span>
+                                                        <i class="ace-icon fa fa-key"></i>
+                                                        <span class="bigger-110">Masuk</span>
                                                     </button>
                                                 </div>
 
@@ -100,7 +91,7 @@
 
                                 </div><!-- /.widget-main -->
 
-                                <div class="toolbar clearfix hide" style="background-color: transparent; border: none">
+                                <div class="toolbar clearfix" style="background-color: transparent; border: none">
                                     <div>
                                         <img src="../../asset/images/loginFB.png" width="150px" class="pull-left">
                                     </div>
@@ -154,15 +145,8 @@
         var user = $('#txtUsername').val(),
                 pass = $('#txtPass').val();
 
-        $.ajax({
-            type: 'post',
-            url: '/',
-            data: {reqs: $('#form-login').serializeArray(), chuck: 'login'},
-
-        })
-
         swal('Masuk', 'Anda login, selamat bekerja', 'success');
-//        open('/', '_self');
+        open('/', '_self');
     }
 </script>
 </body>

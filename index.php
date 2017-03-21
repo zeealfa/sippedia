@@ -3,7 +3,7 @@
 require_once('lib/Twig/Autoloader.php');
 require_once('lib/Twig/LoaderInterface.php');
 require_once('mdl/classUser.php');
-//require_once('mdl/reqs.php');
+require_once('mdl/reqs.php');
 
 
 $sessid = '-';
@@ -47,25 +47,22 @@ else {
     }
 }
 
-if (!$isLogin)
-    header("location:https://schoolmedia.id");
+
+*/
+
 
 if (isset($_POST['reqs'])) {
     $result = false;
-    if (isset($_SESSION[$_POST['chuck']])) {
+    if (isset($_POST['chuck'])) {
         $olah = new reqs();
-        $target = $_SESSION[$_POST['chuck']];
-//        echo json_encode($target);
-//        die();
-
-
+        $target = array("tipe"=>$_POST['chuck'],"db"=>"u999177855_ubyny","tb"=>"t_user");
         $result = $olah->processThis($target, $_REQUEST['reqs']);
     }
     echo json_encode($result);
 //    session_destroy();
     die();
 }
-*/
+
 
 #TEMPORARY data
 $pageConfig = array(
@@ -88,64 +85,64 @@ switch ($f[0]) {
                     "kodeMedia" => 1,
                     "judulMedia" => "Jenis-jenis kelembagaan sosial di indonesia- IPS kelas 7",
                     "pembuatMedia" => "Dita Ratna Pratiwi",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"1.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "1.jpg"
                 ),
                 array(
                     "kodeMedia" => 2,
                     "judulMedia" => "Kecerdasan sosial - SMP kelas 8",
                     "pembuatMedia" => "Imron Saefudin",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"2.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "2.png"
                 ),
                 array(
                     "kodeMedia" => 3,
                     "judulMedia" => "PENGARUH KEUNGGULAN LOKASI TERHADAP KOLONIALISME BARAT",
                     "pembuatMedia" => "",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"3.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "3.jpg"
                 ),
                 array(
                     "kodeMedia" => 4,
                     "judulMedia" => "Perawatan PC - SMK Kelas X",
                     "pembuatMedia" => "Kanzul Fikri Fauzi",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"4.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "4.jpg"
                 ),
                 array(
                     "kodeMedia" => 5,
                     "judulMedia" => "Rekayasa perangkat lunak - SMK kelas 12",
                     "pembuatMedia" => "Ary Santosa",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"5.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "5.png"
                 ),
                 array(
                     "kodeMedia" => 6,
                     "judulMedia" => "Teknik Telekomunikasi - SMK kelas 11",
                     "pembuatMedia" => "Imam Mudi",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"6.jpg"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "6.jpg"
                 ),
                 array(
                     "kodeMedia" => 7,
                     "judulMedia" => "Mengasah kemampuan ekonomi - SMA kelas 10",
                     "pembuatMedia" => "Jusuf Apandy",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"7.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "7.png"
                 ),
                 array(
                     "kodeMedia" => 8,
                     "judulMedia" => "menyelami fenomena sosial di masyarakat - SMA kelas 11",
                     "pembuatMedia" => "Sony Faizal",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"8.jpg"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "8.jpg"
                 ),
                 array(
                     "kodeMedia" => 9,
                     "judulMedia" => "Bahasa Inggris - SMA kelas 12",
                     "pembuatMedia" => "SIti Maisaroh",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"9.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "9.png"
                 ),
             )
         );
@@ -159,22 +156,22 @@ switch ($f[0]) {
                     "kodeMedia" => 1,
                     "judulMedia" => "Jenis-jenis kelembagaan sosial di indonesia- IPS kelas 7",
                     "pembuatMedia" => "Dita Ratna Pratiwi",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"1.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "1.jpg"
                 ),
                 array(
                     "kodeMedia" => 2,
                     "judulMedia" => "Kecerdasan sosial - SMP kelas 8",
                     "pembuatMedia" => "Imron Saefudin",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"2.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "2.png"
                 ),
                 array(
                     "kodeMedia" => 3,
                     "judulMedia" => "PENGARUH KEUNGGULAN LOKASI TERHADAP KOLONIALISME BARAT",
                     "pembuatMedia" => "",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"3.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "3.jpg"
                 ),
             )
         );
@@ -189,43 +186,43 @@ switch ($f[0]) {
                     "kodeMedia" => 4,
                     "judulMedia" => "Perawatan PC - SMK Kelas X",
                     "pembuatMedia" => "Kanzul Fikri Fauzi",
-                    "tahunMedia"=>"",
-                    "fileMedia"=>"4.jpg"
+                    "tahunMedia" => "",
+                    "fileMedia" => "4.jpg"
                 ),
                 array(
                     "kodeMedia" => 5,
                     "judulMedia" => "Rekayasa perangkat lunak - SMK kelas 12",
                     "pembuatMedia" => "Ary Santosa",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"5.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "5.png"
                 ),
                 array(
                     "kodeMedia" => 6,
                     "judulMedia" => "Teknik Telekomunikasi - SMK kelas 11",
                     "pembuatMedia" => "Imam Mudi",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"6.jpg"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "6.jpg"
                 ),
                 array(
                     "kodeMedia" => 7,
                     "judulMedia" => "Mengasah kemampuan ekonomi - SMA kelas 10",
                     "pembuatMedia" => "Jusuf Apandy",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"7.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "7.png"
                 ),
                 array(
                     "kodeMedia" => 8,
                     "judulMedia" => "menyelami fenomena sosial di masyarakat - SMA kelas 11",
                     "pembuatMedia" => "Sony Faizal",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"8.jpg"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "8.jpg"
                 ),
                 array(
                     "kodeMedia" => 9,
                     "judulMedia" => "Bahasa Inggris - SMA kelas 12",
                     "pembuatMedia" => "SIti Maisaroh",
-                    "tahunMedia"=>"2016",
-                    "fileMedia"=>"9.png"
+                    "tahunMedia" => "2016",
+                    "fileMedia" => "9.png"
                 ),
             )
 

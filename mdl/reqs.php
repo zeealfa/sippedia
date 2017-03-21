@@ -19,8 +19,10 @@ class reqs extends classTulis
             if (!$item['value']) continue;
             $fields[] = array("var" => $item['name'], "val" =>$item['value']);
         }
-
         switch ($target['tipe']) {
+            case 'login':
+                $exec = $this->insertThis($target, $fields);
+                break;
             case 'insert':
                 $exec = $this->insertThis($target, $fields);
                 break;
@@ -38,6 +40,7 @@ class reqs extends classTulis
         $tb = $target['tb'];
         foreach ($fields as $index => $field) {
             if(!$field['val']) continue;
+
             $check = $this->cektype($target, $field['var'], $field['val']);
             $theFields[] = $check->var;
             $theValues[] = $check->val;
@@ -97,7 +100,7 @@ class reqs extends classTulis
         $fieldType = null;
         $var = null;
         foreach ($data as $idxCol => $itemCol) {
-            if (md5($this->keyApp . $itemCol->Field) === $field) {
+            if ($itemCol->Field === strtoupper($field)) {
                 $fieldType = explode("(", $itemCol->Type);
                 $hasil->var = $itemCol->Field;
                 break;
@@ -139,45 +142,5 @@ class reqs extends classTulis
         return $var;
     }
 
-    private function execData($data)
-    {
-        $client = $this->getClient();
-        $user = $this->getUser();
-        if (!$user['statLogin']) {
-            return false;
-            die();
-        }
-        $db = $client->dbClient;
-        $tahun = $client->tahun;
-        $semester = $client->semester;
-        $data = $this->cleanThis($data);
-        $tipe = $data['a'];
-        switch ($tipe) {
-            case '1':#MIgrasi program pengajaran
-                $b = $data['b'];
-                $c = $data['c'];
-                $refProgram_sql = "SELECT ID_PAKET_KEAHLIAN as id FROM refs.r_paket_keahlian WHERE ID_PAKET_KEAHLIAN=$c";
-                $proBaru = $this->query_one($refProgram_sql);
-                $programLama_sql = "SELECT KD_PROGRAM_PENGAJARAN AS kdLama,NM_PROGRAM_PENGAJARAN as nmLama FROM pas_sma.r_program_pengajaran WHERE KD_PROGRAM_PENGAJARAN=$b";
-                $proLama = $this->query_one($programLama_sql);
-
-                $sekolah_sql = "SELECT KD_TAHUN_AJARAN as kdTahun FROM pas_sma.t_sekolah_identitas";
-                $sekolah_data = $this->query_all($sekolah_sql);
-                foreach ($sekolah_data as $idxSek => $itmSek) {
-                    $ins_sql = "INSERT INTO sikad_main.t_sekolah_paket_pengajaran (ID_SIKAD, KD_TAHUN_AJARAN, ID_PAKET_KEAHLIAN, KD_PROGRAM_PENGAJARAN,IN_PAKET_KEAHLIAN)
-                    VALUES ($client->ID_SIKAD,$itmSek->kdTahun,$proBaru->id,$proLama->kdLama,'$proLama->nmLama')";
-                    $this->query_one($ins_sql);
-                    $nip = $user['nip'];
-                    $insMIgrasi = "INSERT INTO sikad_main.t_sekolah_migrasi (ID_SIKAD, LEVEL_MIGRASI, NIP) VALUES ($client->ID_SIKAD,2,$nip)";
-                    $this->query_one($insMIgrasi);
-                }
-                break;
-            case '2':
-
-                break;
-        }
-
-        return $data;
-    }
 
 }
